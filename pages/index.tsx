@@ -7,7 +7,7 @@ export default function Home() {
         How much do you want to donate?
       </h2>
 
-      <div className="w-[370px] mt-10 px-10 py-6 shadow rounded-xl text-center">
+      <div className="w-[370px] mt-10 px-10 py-8 shadow rounded-xl text-center">
         <DonateForm />
       </div>
     </main>

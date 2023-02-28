@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface DonateButtonsProps {
   name: string;
   options: { value: number }[];
-  value: number | null;
-  onChange: (value: number) => void;
+  defaultValue: number;
 }
 
 export const DonateButtons: React.FC<DonateButtonsProps> = ({
   name,
   options,
-  value,
-  onChange,
+  defaultValue,
 }) => {
+  const [amount, setAmount] = useState(defaultValue);
+
+  const onChange = (value: number) => {
+    setAmount(value);
+  };
+
   return (
     <ul className="flex flex-col items-center gap-2">
       {options.map((option) => (
@@ -20,7 +24,7 @@ export const DonateButtons: React.FC<DonateButtonsProps> = ({
           <DonateButton
             name={name}
             value={option.value}
-            checked={option.value === value}
+            checked={option.value === amount}
             onClick={onChange}
           />
         </li>
@@ -56,7 +60,7 @@ const DonateButton: React.FC<DonateButtonProps> = ({
 
       <label
         htmlFor={`radio-${value}`}
-        className="block rounded-xl w-full py-3 px-5 focus:outline-none ring-1 ring-gray-300 peer-checked:ring-2 peer-checked:ring-green-400 peer-checked:bg-green-300/5 cursor-pointer "
+        className="block rounded-xl w-full py-3 px-5 focus:outline-none ring-1 ring-gray-300 peer-checked:ring-2 peer-checked:ring-green-400 peer-checked:bg-green-300/5 cursor-pointer"
       >
         ${value}
       </label>
