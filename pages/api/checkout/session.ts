@@ -19,6 +19,7 @@ export default async function handler(
     const session = await stripe.checkout.sessions.create({
       submit_type: "donate",
       payment_method_types: ["card"],
+      locale: "en",
       line_items: [
         {
           quantity: 1,

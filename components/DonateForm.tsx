@@ -7,7 +7,7 @@ const stripePromise = loadStripe(
 );
 
 export const DonateForm = () => {
-  const handleCheckout = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
@@ -27,7 +27,7 @@ export const DonateForm = () => {
   };
 
   return (
-    <form onSubmit={handleCheckout}>
+    <form onSubmit={handleSubmit}>
       <DonateButtons
         name="amount"
         options={[{ value: 10 }, { value: 50 }, { value: 100 }]}
