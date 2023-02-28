@@ -3,13 +3,15 @@ import React from "react";
 interface DonateButtonsProps {
   name: string;
   options: { value: number }[];
-  defaultValue: number;
+  value: number | null;
+  onChange: (value: number) => void;
 }
 
 export const DonateButtons: React.FC<DonateButtonsProps> = ({
   name,
   options,
-  defaultValue,
+  value,
+  onChange,
 }) => {
   return (
     <ul className="flex flex-col items-center gap-2">
@@ -18,7 +20,8 @@ export const DonateButtons: React.FC<DonateButtonsProps> = ({
           <DonateButton
             name={name}
             value={option.value}
-            defaultChecked={option.value === defaultValue}
+            checked={option.value === value}
+            onClick={onChange}
           />
         </li>
       ))}
@@ -29,13 +32,15 @@ export const DonateButtons: React.FC<DonateButtonsProps> = ({
 interface DonateButtonProps {
   name: string;
   value: number;
-  defaultChecked?: boolean;
+  checked?: boolean;
+  onClick: (value: number) => void;
 }
 
 const DonateButton: React.FC<DonateButtonProps> = ({
   value,
   name,
-  defaultChecked,
+  checked,
+  onClick,
 }) => {
   return (
     <div className="w-full">
@@ -44,7 +49,8 @@ const DonateButton: React.FC<DonateButtonProps> = ({
         id={`radio-${value}`}
         name={name}
         value={value}
-        defaultChecked={defaultChecked}
+        checked={checked}
+        onClick={() => onClick(value)}
         className="sr-only peer"
       />
 
